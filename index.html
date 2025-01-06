@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نقشه ملک</title>
+    <title>فیلتر خانه‌ها</title>
 </head>
 <body>
-    <h1>خانه مورد نظر بر روی نقشه</h1>
-    <iframe src="map.html" width="100%" height="600"></iframe>
+    <h1>فیلتر خانه‌ها</h1>
+
+    <!-- فرم فیلتر -->
+    <form method="post">
+        <label for="region">منطقه:</label>
+        <input type="text" id="region" name="region"><br><br>
+        
+        <label for="min_price">حداقل قیمت:</label>
+        <input type="number" id="min_price" name="min_price"><br><br>
+        
+        <label for="max_price">حداکثر قیمت:</label>
+        <input type="number" id="max_price" name="max_price"><br><br>
+        
+        <label for="min_area">حداقل متراژ:</label>
+        <input type="number" id="min_area" name="min_area"><br><br>
+        
+        <label for="max_area">حداکثر متراژ:</label>
+        <input type="number" id="max_area" name="max_area"><br><br>
+        
+        <button type="submit">جستجو</button>
+    </form>
+
+    <h2>نتایج جستجو:</h2>
+    <iframe src="{{ map_file }}" width="100%" height="600"></iframe>
 </body>
 </html>
