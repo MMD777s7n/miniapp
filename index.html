@@ -17,27 +17,27 @@
         </select><br><br>
 
         <label for="min_deposit">حداقل ودیعه:</label>
-        <input type="number" id="min_deposit" name="min_deposit" step="50000000"><br><br>
+        <input type="number" id="min_deposit" name="min_deposit" step="50000000" placeholder="به تومان"><br><br>
 
         <label for="max_deposit">حداکثر ودیعه:</label>
-        <input type="number" id="max_deposit" name="max_deposit" step="50000000"><br><br>
+        <input type="number" id="max_deposit" name="max_deposit" step="50000000" placeholder="به تومان"><br><br>
 
         <label for="rent_filter">نوع اجاره:</label>
         <select id="rent_filter" name="rent_filter">
-            <option value="همه">همه</option>
+            <option value="">همه</option>
             <option value="فقط رهن کامل">فقط رهن کامل</option>
             <option value="رهن و اجاره">رهن و اجاره</option>
         </select><br><br>
 
         <label for="min_rent">حداقل اجاره:</label>
-        <input type="number" id="min_rent" name="min_rent" step="500000"><br><br>
+        <input type="number" id="min_rent" name="min_rent" step="500000" placeholder="به تومان"><br><br>
 
         <label for="max_rent">حداکثر اجاره:</label>
-        <input type="number" id="max_rent" name="max_rent" step="500000"><br><br>
+        <input type="number" id="max_rent" name="max_rent" step="500000" placeholder="به تومان"><br><br>
 
         <label for="rooms">تعداد اتاق:</label>
         <select id="rooms" name="rooms">
-            <option value="همه">همه</option>
+            <option value="">همه</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -46,32 +46,32 @@
 
         <label for="floor">طبقه:</label>
         <select id="floor" name="floor">
-            <option value="همه">همه</option>
+            <option value="">همه</option>
             {% for i in range(-1, 7) %}
-            <option value="{{ i }}">{{ i }}</option>
+                <option value="{{ i }}">{{ i }}</option>
             {% endfor %}
             <option value="بیشتر از 6">بیشتر از 6</option>
         </select><br><br>
 
         <label for="elevator">آسانسور:</label>
         <select id="elevator" name="elevator">
-            <option value="همه">همه</option>
-            <option value="دارد">دارد</option>
-            <option value="ندارد">ندارد</option>
+            <option value="">همه</option>
+            <option value="1">دارد</option>
+            <option value="0">ندارد</option>
         </select><br><br>
 
         <label for="parking">پارکینگ:</label>
         <select id="parking" name="parking">
-            <option value="همه">همه</option>
-            <option value="دارد">دارد</option>
-            <option value="ندارد">ندارد</option>
+            <option value="">همه</option>
+            <option value="1">دارد</option>
+            <option value="0">ندارد</option>
         </select><br><br>
 
         <label for="warehouse">انباری:</label>
         <select id="warehouse" name="warehouse">
-            <option value="همه">همه</option>
-            <option value="دارد">دارد</option>
-            <option value="ندارد">ندارد</option>
+            <option value="">همه</option>
+            <option value="1">دارد</option>
+            <option value="0">ندارد</option>
         </select><br><br>
 
         <button type="submit">جستجو</button>
@@ -79,29 +79,33 @@
 
     <h2>نتایج:</h2>
     {% if filtered_houses %}
-    <table border="1">
-        <tr>
-            <th>منطقه</th>
-            <th>ودیعه</th>
-            <th>اجاره ماهانه</th>
-            <th>تعداد اتاق</th>
-            <th>طبقه</th>
-            <th>آسانسور</th>
-            <th>پارکینگ</th>
-            <th>انباری</th>
-        </tr>
-        {% for house in filtered_houses %}
-        <tr>
-            <td>{{ house['District'] }}</td>
-            <td>{{ house['Deposit'] }}</td>
-            <td>{{ house['Monthly_Rent'] }}</td>
-            <td>{{ house['Rooms'] }}</td>
-            <td>{{ house['Floor'] }}</td>
-            <td>{{ 'دارد' if house['Elevator'] else 'ندارد' }}</td>
-            <td>{{ 'دارد' if house['Parking'] else 'ندارد' }}</td>
-            <td>{{ 'دارد' if house['Warehouse'] else 'ندارد' }}</td>
-        </tr>
-        {% endfor %}
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>منطقه</th>
+                <th>ودیعه (تومان)</th>
+                <th>اجاره ماهانه (تومان)</th>
+                <th>تعداد اتاق</th>
+                <th>طبقه</th>
+                <th>آسانسور</th>
+                <th>پارکینگ</th>
+                <th>انباری</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for house in filtered_houses %}
+            <tr>
+                <td>{{ house['District'] }}</td>
+                <td>{{ house['Deposit'] }}</td>
+                <td>{{ house['Monthly_Rent'] }}</td>
+                <td>{{ house['Rooms'] }}</td>
+                <td>{{ house['Floor'] }}</td>
+                <td>{{ 'دارد' if house['Elevator'] else 'ندارد' }}</td>
+                <td>{{ 'دارد' if house['Parking'] else 'ندارد' }}</td>
+                <td>{{ 'دارد' if house['Warehouse'] else 'ندارد' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     {% else %}
     <p>نتیجه‌ای یافت نشد.</p>
